@@ -34,3 +34,9 @@ print(str(embed_doc))
 
 
 #Document Similarity
+query = "What is the capital of France?"
+
+query_embed = embedding.embed_query(query)
+
+
+print(cosine_similarity([query_embed], embed_doc))
