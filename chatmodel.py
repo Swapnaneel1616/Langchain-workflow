@@ -39,4 +39,10 @@ query = "What is the capital of France?"
 query_embed = embedding.embed_query(query)
 
 
-print(cosine_similarity([query_embed], embed_doc))
+scores = cosine_similarity([query_embed], embed_doc)[0]
+
+index , score = (sorted(list(enumerate(scores)), key=lambda x:x[1])[-1])
+print(documents[index])
+print("similarity_Score is ", score)
+
+
