@@ -33,12 +33,21 @@ Ensure the summary is clear, accurate, and aligned with the provided style and l
 """)
 
 #Fill the placeholder
-prompt = template.invoke({
-    'paper_input':paper_input,
-    'style_input':style_input,
-    'length_input':length_input
-})
+# prompt = template.invoke({
+#     'paper_input':paper_input,
+#     'style_input':style_input,
+#     'length_input':length_input
+# })
 
-if st.button('Summarise'):
-    result = model.invoke(prompt)
+# if st.button('Summarise'):
+#     result = model.invoke(prompt)
+#     st.write(result.content)
+
+#Using langchain chaining ecosystem 
+
+if st.button("Summarise"):
+    chain = template|model
+    result = chain.invoke({'paper_input':paper_input,
+                'style_input':style_input,
+                'length_input':length_input})
     st.write(result.content)
